@@ -1,0 +1,53 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Links & Contact{% endblock %}
+
+{% block content %}
+<main>
+    <h1>Connect with Me</h1>
+
+    <div class="links-container">
+        <div class="link-card">
+            <img src="{% static 'images/github-icon.png' %}" alt="GitHub">
+            <h3>GitHub</h3>
+            <p>Check out my repositories and star it.</p>
+            <a href="https://github.com/salmonqahhor" class="btn" target="_blank">Follow on GitHub</a>
+        </div>
+
+        <div class="link-card">
+            <img src="{% static 'images/telegram-icon.png' %}" alt="Telegram">
+            <h3>Telegram</h3>
+            <p>Direct message via telegram.</p>
+            <a href="https://t.me/SalmonCS" class="btn" target="_blank">Send Message</a>
+        </div>
+
+        <div class="link-card">
+            <img src="{% static 'images/email-icon.png' %}" alt="Email">
+            <h3>Email</h3>
+            <p>Feel free to reach out via professional email.</p>
+            <a href="mailto:salmonbekqahhorov@gmail.com" class="btn">Write Email</a>
+        </div>
+
+        <div class="link-card">
+            <img src="{% static 'images/instagram-icon.png' %}" alt="Instagram">
+            <h3>Instagram</h3>
+            <p>Follow my instagram page and feel free to communicate.</p>
+            <a href="https://instagram.com/salmonqahhor" class="btn" target="_blank">Follow Me</a>
+        </div>
+
+
+        <div class="link-card">
+            <img src="{% static 'images/linkedin.png' %}" alt="LinkedIn">
+            <h3>Linkedin</h3>
+            <p>Follow my linkedin page and feel free to communicate.</p>
+            <a href="https://www.linkedin.com/in/salmon-qahhorov-ba85103a6" class="btn" target="_blank">Follow Me</a>
+        </div>
+
+    </div>
+
+    <hr style="margin: 3rem 0; border: 0; border-top: 1px solid rgba(0,0,0,0.1);">
+
+    
+</main>
+{% endblock %}

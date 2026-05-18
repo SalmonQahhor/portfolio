@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Portfolio{% endblock %} | Salmon</title>
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://salmonqahhor.github.io/">
+    <meta property="og:title" content="Salmon Qahhorov | Full-Stack Developer">
+    <meta property="og:description" content="Portfolio: Full-Stack dasturlash va kiberxavfsizlik olamidagi loyihalarim.">
+    <meta property="og:image" content="{% static 'images/me-circle.PNG' %}">
+    
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://salmonqahhor.github.io/">
+    <meta property="twitter:title" content="Salmon Qahhorov | Full-Stack Developer">
+    <meta property="twitter:description" content="Portfolio: Full-Stack dasturlash va kiberxavfsizlik olamidagi loyihalarim.">
+    <meta property="twitter:image" content="{% static 'images/salmon.JPEG' %}">
+    
+    <link rel="icon" type="image/x-icon" href="{% static 'images/me-circle.PNG' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <nav>
+        <a href="{% url 'home' %}#home" class="nav-logo">SalmonCS</a>
+        
+        <div class="nav-links">
+            <a href="{% url 'home' %}#home">Home</a>
+            <a href="{% url 'home' %}#about">About</a>
+            <a href="{% url 'projects' %}">Projects</a>
+            <a href="{% url 'skills' %}">Skills</a>
+            <a href="{% url 'links' %}">Links</a>
+        </div>
+
+        <div class="nav-filler"></div>
+    </nav>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+        
+        {% include 'core/includes/contact_form.html' %}
+    </main>
+
+    <script>
+        const textArray = ["Backend Developer", "Amateur Pentester", "Arch Linux User"];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const dynamicText = document.querySelector(".dynamic-text");
+
+        function typeEffect() {
+            if (!dynamicText) return;
+            
+            const currentText = textArray[textIndex];
+            
+            if (isDeleting) {
+                dynamicText.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                dynamicText.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentText.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % textArray.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(typeEffect, typeSpeed);
+        }
+
+        if (dynamicText) {
+            setTimeout(typeEffect, 1000);
+        }
+    </script>
+    
+    {% block extra_js %}
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,22 @@
+<section class="contact-footer-section" style="margin-top: 5rem; padding: 4rem 2rem; background: rgba(255,255,255,0.05); border-top: 1px solid rgba(255,255,255,0.1);">
+    <div style="max-width: 800px; margin: 0 auto;">
+        <h2 style="text-align: center; margin-bottom: 1rem; color: #fff;">Let's Get in Touch</h2>
+        <p style="text-align: center; color: #94a3b8; margin-bottom: 3rem;">Have a project in mind or any offer? Send me a message!</p>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert" style="background: #1e293b; color: #2ecc71; padding: 1rem; border-radius: 8px; margin-bottom: 2rem; text-align: center; border: 1px solid #2ecc71;">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="POST" action="{% url 'contact_submit' %}" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="Your Name" required style="padding: 1rem; background: #0f172a; border: 1px solid #334155; border-radius: 8px; color: #fff; font-family: inherit;">
+            <input type="email" name="email" placeholder="Your Email" required style="padding: 1rem; background: #0f172a; border: 1px solid #334155; border-radius: 8px; color: #fff; font-family: inherit;">
+            <textarea name="message" placeholder="Your Message" rows="4" required style="grid-column: span 2; padding: 1rem; background: #0f172a; border: 1px solid #334155; border-radius: 8px; color: #fff; font-family: inherit; resize: vertical;"></textarea>
+            <button type="submit" class="btn" style="grid-column: span 2; padding: 1rem; cursor: pointer; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Send Message</button>
+        </form>
+    </div>
+</section>

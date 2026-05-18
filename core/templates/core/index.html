@@ -1,0 +1,56 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<section id="home" class="me">
+    <div class="me-text">
+        <h1 class="gradient-text">Salmon Qahhorov</h1>
+        <div class="sub-title-wrapper">
+            <span class="static-text">I'm a </span>
+            <span class="dynamic-text"></span><span class="cursor">|</span>
+        </div>
+        
+        <p class="description">Building secure systems and elegant web solutions. Passionate about Backend development, Python, and creating complex, scalable architectures.</p>
+        
+        <div class="action-buttons">
+            <a href="{% static 'files/salmon_qahhorov_cv.pdf' %}" download="Salmon_Qahhorov_CV" class="btn-primary">Download CV</a>
+            <div class="social-icons">
+                <a href="https://github.com/salmonqahhor" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://t.me/SalmonCS" target="_blank"><i class="fab fa-telegram"></i></a>
+                <a href="https://www.linkedin.com/in/salmon-qahhorov-ba85103a6" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="me-image">
+        <div class="glow-container">
+            <img src="{% static 'images/salmon.JPEG' %}" alt="Salmon">
+        </div>
+    </div>
+</section>
+
+<section id="about" class="about-section">
+    <div class="about-card">
+        <div class="about-header">
+            <h2>About Me</h2>
+            <div class="underline"></div>
+        </div>
+        <div class="about-content">
+             <p class="highlight">
+                I am a student at <span>Tashkent State University of Economics</span>.
+            </p>
+
+            <p>
+                I focus on <strong>Backend Development</strong> with <strong>Python</strong> and enjoy building reliable and scalable web applications. I work with technologies such as <strong>Django</strong>, <strong>REST APIs</strong>, <strong>SQL</strong>, and <strong>Linux</strong>. I also explore <strong>Full-Stack Development</strong> and continuously improve my problem-solving and software development skills through practical projects and daily learning.
+            </p>
+            <div class="strengths">
+                <span class="tag">Discipline</span>
+                <span class="tag">Consistency</span>
+                <span class="tag">Focus</span>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

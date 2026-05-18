@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Skills{% endblock %}
+
+{% block content %}
+<main>
+    <h1>Skills & Technologies</h1>
+
+    <div class="skills-container">
+        {% for skill in skills %}
+        <div class="skill-card">
+            {% if skill.image %}
+            <img src="{{ skill.image.url }}" alt="{{ skill.name }}">
+            {% endif %}
+            <h3>{{ skill.name }}</h3>
+            {% if skill.description %}
+            <p>{{ skill.description }}</p>
+            {% endif %}
+        </div>
+        {% empty %}
+        <p>Hozircha ko'nikmalar qo'shilmagan.</p>
+        {% endfor %}
+    </div>
+</main>
+{% endblock %}
