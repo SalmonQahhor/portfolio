@@ -2,19 +2,26 @@
    1. GLOBAL VARIABLES & RESET
    ========================================= */
 :root {
-    --bg-dark: #0b0f17;
-    --bg-surface: #161b26;
-    --bg-input: #1f2636;
-    --accent-neon: #39ff14;
-    --accent-glow: rgba(57, 255, 20, 0.25);
-    --accent-glow-intense: rgba(57, 255, 20, 0.45);
+    /* Deep professional dark blue/purple tones */
+    --bg-dark: #090a15;
+    --bg-surface: #12142b;
+    --bg-input: #181b38;
+    
+    /* Professional Blue Accent */
+    --accent-primary: #4A6CF7;
+    --accent-hover: #3554D1;
+    --accent-active: #2740A8;
+    
+    /* Text & Borders */
     --text-primary: #ffffff;
-    --text-secondary: #94a3b8;
-    --border-color: rgba(255, 255, 255, 0.08);
-    --radius-lg: 20px;
+    --text-secondary: #a3b1c6;
+    --border-color: rgba(255, 255, 255, 0.06);
+    
+    /* Professional Borders */
+    --radius-lg: 16px;
     --radius-md: 12px;
     --radius-sm: 8px;
-    --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --transition-smooth: all 0.3s ease-in-out;
 }
 
 * {
@@ -46,48 +53,35 @@ nav {
     background: transparent;
     padding: 2rem 4rem;
     display: flex;
-    justify-content: space-between; /* Elementlarni uch tomonga teng tarqatadi */
+    justify-content: space-between;
     align-items: center;
     z-index: 2000;
 }
-
 
 .nav-logo {
     font-size: 1.6rem;
     font-weight: 800;
     letter-spacing: -0.5px;
     text-decoration: none;
-    flex: 1; /* Chap tomonni egallaydi */
-    
-    background: linear-gradient(
-        135deg, 
-        #ffffff 0%, 
-        rgba(57, 255, 20, 0.3) 40%, 
-        #39ff14 60%, 
-        #ffffff 100%
-    );
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 2px 8px rgba(57, 255, 20, 0.2));
-    
-    animation: logoShine 5s linear infinite;
+    flex: 1;
+    color: var(--text-primary);
     transition: var(--transition-smooth);
 }
 
+.nav-logo span {
+    color: var(--accent-primary);
+}
 
 .nav-logo:hover {
-    transform: scale(1.05);
-    filter: drop-shadow(0 2px 15px rgba(57, 255, 20, 0.5));
+    transform: scale(1.02);
 }
 
 .nav-links {
     display: flex;
     gap: 3rem;
     justify-content: center;
-    flex: 2; /* Markazda ko'proq joy olishi va o'rtada muallaq turishi uchun */
+    flex: 2;
 }
-
 
 .nav-links a {
     text-decoration: none;
@@ -96,43 +90,31 @@ nav {
     font-size: 1rem;
     transition: var(--transition-smooth);
     position: relative;
-    white-space: nowrap; /* Linklar ikki qatorga tushib ketmasligi uchun */
+    white-space: nowrap;
 }
 
-
-.nav-links a:hover {
-    color: var(--accent-neon);
+/* Active Page & Hover State */
+.nav-links a:hover, 
+.nav-links a.active {
+    color: var(--accent-primary);
 }
 
-.nav-links a::after {
+.nav-links a.active::after {
     content: '';
     position: absolute;
     bottom: -6px;
     left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--accent-neon);
-    transition: var(--transition-smooth);
-    box-shadow: 0 0 8px var(--accent-neon);
-}
-
-.nav-links a:hover::after {
     width: 100%;
+    height: 2px;
+    background-color: var(--accent-primary);
 }
 
 .nav-filler {
-    flex: 1; /* Logo bilan bir xil kenglik oladi, natijada menyu o'rtada qoladi */
+    flex: 1;
     pointer-events: none;
     user-select: none;
 }
 
-@keyframes logoShine {
-    0% { background-position: 0% center; }
-    50% { background-position: 100% center; }
-    100% { background-position: 0% center; }
-}
-
-/* Mobil qurilmalar uchun moslashtirish */
 @media (max-width: 850px) {
     nav {
         padding: 1.5rem 2rem;
@@ -148,45 +130,8 @@ nav {
         flex: none;
     }
     .nav-filler {
-        display: none; /* Mobilda kerak emas */
+        display: none;
     }
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-main {
-    padding-top: 0; /* Navbardan qolgan sun'iy katta bo'shliqni butunlay yo'qotamiz */
-}
-
-nav a {
-    text-decoration: none;
-    color: var(--text-secondary);
-    font-weight: 500;
-    font-size: 1rem;
-    transition: var(--transition-smooth);
-    position: relative;
-}
-
-nav a:hover {
-    color: var(--accent-neon);
-}
-
-nav a::after {
-    content: '';
-    position: absolute;
-    bottom: -6px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--accent-neon);
-    transition: var(--transition-smooth);
-    box-shadow: 0 0 8px var(--accent-neon);
-}
-
-nav a:hover::after {
-    width: 100%;
 }
 
 main {
@@ -194,66 +139,34 @@ main {
 }
 
 /* =========================================
-   3. INTERACTIVE HERO SECTION (HOME)
+   3. HERO SECTION
    ========================================= */
 .me {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
-    align-items: center;        /* Barcha elementlarni vertikal o'q bo'yicha o'rtaga tekislaydi */
+    align-items: center;
     justify-content: center;
     gap: 3rem;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem 2rem;         /* Ortiqcha tepa-past bo'shliqlarni butunlay tozalaymiz */
-    min-height: calc(100vh - 40px); /* Ekran balandligiga mukammal o'tirishi uchun */
+    padding: 2rem 2rem;
+    min-height: calc(100vh - 40px);
 }
 
 .me-text {
     display: flex;
     flex-direction: column;
-    justify-content: center;    /* Matnlar o'z ichida ham vertikal markazda turadi */
-    height: 100%;               /* Rasm balandligi bilan tenglashishi uchun */
+    justify-content: center;
+    height: 100%;
 }
 
 .me-text h1 {
     font-size: 4.5rem;
     font-weight: 800;
-    letter-spacing: -2px;
+    letter-spacing: -1px;
     margin-top: 0;
     margin-bottom: 0.5rem;
-    
-    /* Oq, yarim shaffof yashil va yorqin yashil ranglar uyg'unligi */
-    background: linear-gradient(
-        120deg, 
-        #ffffff 0%, 
-        rgba(57, 255, 20, 0.4) 30%, 
-        #39ff14 50%, 
-        rgba(57, 255, 20, 0.4) 70%, 
-        #ffffff 100%
-    );
-    
-    /* Gradientni matn ichiga joylashtirish va o'lchamini kattalashtirish (harakatlanishi uchun) */
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    
-    /* Matn orqasidan nafis neon nuri taralib turishi (transparency effekti uchun) */
-    filter: drop-shadow(0 2px 10px rgba(57, 255, 20, 0.15));
-    
-    /* Animatsiyani ulash: 4 soniyada aylanadi, to'xtamaydi va silliq harakat qiladi */
-    animation: shineGlow 4s linear infinite;
-}
-
-@keyframes shineGlow {
-    0% {
-        background-position: 0% center;
-    }
-    50% {
-        background-position: 100% center;
-    }
-    100% {
-        background-position: 0% center;
-    }
+    color: var(--text-primary);
 }
 
 .sub-title-wrapper {
@@ -265,13 +178,12 @@ main {
 }
 
 .dynamic-text {
-    color: var(--accent-neon);
+    color: var(--accent-primary);
     margin-left: 10px;
-    text-shadow: 0 0 10px var(--accent-glow);
 }
 
 .cursor {
-    color: var(--accent-neon);
+    color: var(--accent-primary);
     animation: blink 0.8s infinite;
 }
 
@@ -285,6 +197,7 @@ main {
     font-size: 1.1rem;
     max-width: 520px;
     margin-bottom: 2.5rem;
+    text-align: justify; /* Text justify rule applied */
 }
 
 .action-buttons {
@@ -293,23 +206,27 @@ main {
     gap: 2rem;
 }
 
-/* Download CV Button */
+/* Primary Buttons with specific scale interactions */
 .btn-primary {
-    background-color: var(--accent-neon);
-    color: #000000;
+    background-color: var(--accent-primary);
+    color: #ffffff;
     padding: 0.9rem 2.2rem;
     border-radius: var(--radius-lg);
     text-decoration: none;
-    font-weight: 700;
+    font-weight: 600;
     transition: var(--transition-smooth);
-    box-shadow: 0 0 15px var(--accent-glow);
     border: none;
     cursor: pointer;
 }
 
 .btn-primary:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 0 25px var(--accent-glow-intense);
+    background-color: var(--accent-hover);
+    transform: scale(0.97);
+}
+
+.btn-primary:active {
+    background-color: var(--accent-active);
+    transform: scale(0.94);
 }
 
 .social-icons {
@@ -323,7 +240,8 @@ main {
     justify-content: center;
     width: 48px;
     height: 48px;
-    border: 2px solid var(--border-color);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
     border-radius: 50%;
     color: var(--text-secondary);
     font-size: 1.2rem;
@@ -332,13 +250,17 @@ main {
 }
 
 .social-icons a:hover {
-    border-color: var(--accent-neon);
-    color: var(--accent-neon);
-    transform: translateY(-4px);
-    box-shadow: 0 0 15px var(--accent-glow);
+    background: var(--accent-primary);
+    border-color: var(--accent-primary);
+    color: #ffffff;
+    transform: scale(0.97);
 }
 
-/* Profil Rasmi Atrofidagi Kuchli Interaktivlik */
+.social-icons a:active {
+    transform: scale(0.94);
+}
+
+/* Profile Image */
 .me-image {
     display: flex;
     justify-content: center;
@@ -350,8 +272,8 @@ main {
     width: 340px;
     height: 340px;
     border-radius: 50%;
-    cursor: pointer;
     transition: var(--transition-smooth);
+    overflow: hidden;
 }
 
 .glow-container img {
@@ -359,41 +281,16 @@ main {
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
-    border: 4px solid var(--bg-surface);
-    position: relative;
-    z-index: 5;
+    border: 4px solid var(--border-color);
     transition: var(--transition-smooth);
 }
 
-/* Pulsatsiya qiluvchi neon aylanalar backgroundda */
-.glow-container::before, .glow-container::after {
-    content: '';
-    position: absolute;
-    top: -5px; left: -5px; right: -5px; bottom: -5px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent-neon), #00ffcc);
-    z-index: 1;
-    opacity: 0.5;
-    transition: var(--transition-smooth);
-}
-
-.glow-container::after {
-    filter: blur(15px);
-    opacity: 0.6;
-}
-
-/* Sichqoncha rasmga kelgandagi interaktiv holat */
 .glow-container:hover {
-    transform: scale(1.04) rotate(2deg);
+    transform: scale(1.03); /* Clean scale, no rotation */
 }
 
-.glow-container:hover::before {
-    transform: scale(1.05);
-}
-
-.glow-container:hover::after {
-    filter: blur(25px);
-    opacity: 0.9;
+.glow-container:hover img {
+    border-color: var(--accent-primary);
 }
 
 /* =========================================
@@ -410,31 +307,32 @@ main {
     padding: 4rem;
     border-radius: var(--radius-lg);
     border: 1px solid var(--border-color);
-    box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
 .about-header h2, main h1 {
     font-size: 2.8rem;
     font-weight: 800;
+    color: var(--text-primary);
 }
 
 .underline {
     width: 60px;
     height: 4px;
-    background: var(--accent-neon);
+    background: var(--accent-primary);
     margin: 1rem 0 2rem 0;
     border-radius: var(--radius-sm);
-    box-shadow: 0 0 10px var(--accent-neon);
 }
 
 .about-content p {
     color: var(--text-secondary);
     font-size: 1.15rem;
     margin-bottom: 1.5rem;
+    text-align: justify; /* Text justify rule applied */
 }
 
 .about-content span {
-    color: var(--accent-neon);
+    color: var(--accent-primary);
     font-weight: 600;
 }
 
@@ -446,25 +344,25 @@ main {
 }
 
 .tag {
-    background: rgba(57, 255, 20, 0.05);
-    border: 1px solid rgba(57, 255, 20, 0.2);
-    color: var(--accent-neon);
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
     padding: 0.6rem 1.4rem;
     border-radius: var(--radius-lg);
-    font-weight: 600;
+    font-weight: 500;
     font-size: 0.95rem;
     transition: var(--transition-smooth);
 }
 
 .tag:hover {
-    background: var(--accent-neon);
-    color: #000;
-    box-shadow: 0 0 15px var(--accent-glow);
-    transform: translateY(-3px);
+    background: var(--accent-primary);
+    color: #ffffff;
+    border-color: var(--accent-primary);
+    transform: scale(0.97);
 }
 
 /* =========================================
-   5. BARCHA ICHKI SAHIFALAR UCHUN UNIFIED GRID (Projects, Skills, Links)
+   5. UNIFIED GRID (Projects, Skills, Links)
    ========================================= */
 main h1 {
     text-align: center;
@@ -472,15 +370,10 @@ main h1 {
     font-size: 2.8rem;
     font-weight: 800;
     letter-spacing: -1px;
-    background: linear-gradient(135deg, #ffffff 70%, var(--accent-neon));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
-
 
 .projects-container, .skills-container, .links-container {
     display: grid;
-    /* Kartalar o'ta kengayib ketmasligi uchun max 380px, min 300px cheklov qo'yamiz */
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 2rem;
     max-width: 1200px;
@@ -488,38 +381,33 @@ main h1 {
     padding: 0 2rem;
 }
 
-
-/* Universal Karta Dizayni */
+/* Universal Card Design */
 .project-card, .skill-card, .link-card {
-    background: linear-gradient(145deg, #161b26, #11151f);
-    border: 1px solid rgba(255, 255, 255, 0.04);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
     padding: 2rem;
-    border-radius: 24px; /* Premium yumshoq burchaklar */
+    border-radius: var(--radius-lg);
     display: flex;
     flex-direction: column;
-    align-items: center;    /* Elementlarni markazga tekislaymiz (Xuddi asosiy sahifangizdek) */
-    text-align: center;     /* Matnlar markazda juda chiroyli turadi */
+    align-items: flex-start;
     transition: var(--transition-smooth);
     position: relative;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
-
 
 .project-card:hover, .skill-card:hover, .link-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(57, 255, 20, 0.3);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(57, 255, 20, 0.05);
+    transform: scale(1.03); /* Clean scale instead of translateY */
+    border-color: var(--accent-primary);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
-
 
 .project-img {
     width: 100%;
     height: 180px;
     object-fit: cover;
-    border-radius: 16px;
+    border-radius: 12px;
     margin-bottom: 1.5rem;
 }
-
 
 .project-card h3, .skill-card h3, .link-card h3 {
     font-size: 1.35rem;
@@ -527,8 +415,8 @@ main h1 {
     margin-bottom: 0.8rem;
     color: var(--text-primary);
     letter-spacing: -0.5px;
+    text-align: left;
 }
-
 
 .project-card p, .skill-card p, .link-card p {
     color: var(--text-secondary);
@@ -536,7 +424,8 @@ main h1 {
     line-height: 1.6;
     margin-bottom: 1.5rem;
     word-wrap: break-word;
-    max-width: 280px; /* Matn yon tomonga tarqalib ketmasligi uchun */
+    text-align: justify; /* Text justify rule applied */
+    width: 100%;
 }
 
 .skill-card img, .link-card img, .skill-card i, .link-card i {
@@ -545,38 +434,41 @@ main h1 {
     object-fit: contain;
     margin-bottom: 1.2rem;
     display: inline-block;
-    color: var(--accent-neon);
+    color: var(--accent-primary);
     font-size: 3.2rem;
-    filter: drop-shadow(0 0 8px rgba(57, 255, 20, 0.2)); /* Ikonka atrofiga nafis nur */
 }
 
-/* Kartalar ichidagi tugmalar */
+/* Internal Card Buttons */
 .btn {
     display: inline-block;
     width: 100%;
     padding: 0.75rem;
-    background: rgba(57, 255, 20, 0.03);
-    color: var(--accent-neon);
-    border: 1px solid rgba(57, 255, 20, 0.3);
-    border-radius: 14px;
+    background: var(--bg-input);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 0.95rem;
     text-align: center;
     transition: var(--transition-smooth);
-    margin-top: auto; /* Agar kontent kam bo'lsa ham tugma har doim eng pastga tekislanadi */
+    margin-top: auto;
 }
 
 .btn:hover {
-    background: var(--accent-neon);
-    color: #000000;
-    border-color: var(--accent-neon);
-    box-shadow: 0 0 15px var(--accent-glow);
-    font-weight: 700;
+    background: var(--accent-hover);
+    color: #ffffff;
+    border-color: var(--accent-hover);
+    transform: scale(0.97);
+}
+
+.btn:active {
+    background: var(--accent-active);
+    transform: scale(0.94);
 }
 
 /* =========================================
-   6. MUKAMMAL CONTACT SECTION (PREMIUM DESIGN)
+   6. CONTACT SECTION
    ========================================= */
 .contact-footer-section {
     max-width: 650px;
@@ -585,7 +477,7 @@ main h1 {
     background: var(--bg-surface);
     border-radius: var(--radius-lg);
     border: 1px solid var(--border-color);
-    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
     text-align: center;
 }
 
@@ -593,16 +485,15 @@ main h1 {
     font-size: 2.4rem;
     font-weight: 800;
     margin-bottom: 0.5rem;
-    color: var(--text-primary) !important;
+    color: var(--text-primary);
 }
 
 .contact-footer-section p {
-    color: var(--text-secondary) !important;
+    color: var(--text-secondary);
     font-size: 1.05rem;
     margin-bottom: 2.5rem;
 }
 
-/* Form elementlari joylashuvi */
 .contact-footer-section form {
     display: flex;
     flex-direction: column;
@@ -611,11 +502,11 @@ main h1 {
 
 .contact-footer-section input, 
 .contact-footer-section textarea {
-    background: var(--bg-input) !important;
-    border: 1px solid var(--border-color) !important;
-    color: var(--text-primary) !important;
-    padding: 1.1rem 1.3rem !important;
-    border-radius: var(--radius-md) !important;
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 1.1rem 1.3rem;
+    border-radius: var(--radius-md);
     width: 100%;
     font-size: 1rem;
     font-family: inherit;
@@ -624,10 +515,9 @@ main h1 {
 
 .contact-footer-section input:focus, 
 .contact-footer-section textarea:focus {
-    border-color: var(--accent-neon) !important;
-    background: var(--bg-surface) !important;
+    border-color: var(--accent-primary);
+    background: var(--bg-surface);
     outline: none;
-    box-shadow: 0 0 15px rgba(57, 255, 20, 0.15);
 }
 
 .contact-footer-section textarea {
@@ -636,26 +526,30 @@ main h1 {
 }
 
 .contact-footer-section button {
-    background: var(--accent-neon);
-    color: #000000;
+    background: var(--accent-primary);
+    color: #ffffff;
     border: none;
     padding: 1.1rem;
     border-radius: var(--radius-md);
     font-size: 1.05rem;
-    font-weight: 700;
+    font-weight: 600;
     cursor: pointer;
     width: 100%;
     transition: var(--transition-smooth);
-    box-shadow: 0 0 15px var(--accent-glow);
 }
 
 .contact-footer-section button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 0 25px var(--accent-glow-intense);
+    background: var(--accent-hover);
+    transform: scale(0.97);
+}
+
+.contact-footer-section button:active {
+    background: var(--accent-active);
+    transform: scale(0.94);
 }
 
 /* =========================================
-   7. RESPONSIVE DESIGN (MOBILE ADAPTATION)
+   7. RESPONSIVE DESIGN
    ========================================= */
 @media (max-width: 992px) {
     .me {
@@ -676,7 +570,7 @@ main h1 {
         font-size: 1.6rem;
     }
     .me-image {
-        grid-row: 1; /* Mobil qurilmada rasm tepaga chiqadi */
+        grid-row: 1;
     }
     .glow-container {
         width: 280px;
@@ -693,5 +587,11 @@ main h1 {
     }
     .about-card, .contact-footer-section {
         padding: 2.2rem 1.5rem;
+    }
+    .project-card, .skill-card, .link-card {
+        align-items: center;
+    }
+    .project-card h3, .skill-card h3, .link-card h3 {
+        text-align: center;
     }
 }

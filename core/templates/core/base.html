@@ -26,13 +26,13 @@
 
     <nav>
         <a href="{% url 'home' %}#home" class="nav-logo">SalmonCS</a>
-        
+               
         <div class="nav-links">
-            <a href="{% url 'home' %}#home">Home</a>
-            <a href="{% url 'home' %}#about">About</a>
-            <a href="{% url 'projects' %}">Projects</a>
-            <a href="{% url 'skills' %}">Skills</a>
-            <a href="{% url 'links' %}">Links</a>
+            <a href="{% url 'home' %}#home">HOME</a>
+            <a href="{% url 'home' %}#about">ABOUT</a>
+            <a href="{% url 'projects' %}" class="{% if request.path == '/projects/' %}active{% endif %}">PROJECTS</a>
+            <a href="{% url 'skills' %}" class="{% if request.path == '/skills/' %}active{% endif %}">SKILLS</a>
+            <a href="{% url 'links' %}" class="{% if request.path == '/links/' %}active{% endif %}">LINKS</a>
         </div>
 
         <div class="nav-filler"></div>

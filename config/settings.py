@@ -14,6 +14,8 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-local-development-key-1234
 
 DEBUG = False
 
+ALLOWED_HOSTS = ['salmoncs.com', 'www.salmoncs.com', '167.172.251.184', 'localhost', '127.0.0.1']
+
 ROOT_URLCONF = 'config.urls'
 
 
@@ -31,14 +33,13 @@ INSTALLED_APPS = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'market_test',
-        'USER': 'postgres',  
-        'PASSWORD': '',      
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': os.getenv('DB_NAME', 'portfolio_db'),
+        'USER': os.getenv('DB_USER', 'salmon_admin'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),  # Bu yerda os.getenv bo'lishi shart!
+        'HOST': os.getenv('DB_HOST', '127.0.0.1'),
+        'PORT': os.getenv('DB_PORT', '5432'),
     }
 }
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
